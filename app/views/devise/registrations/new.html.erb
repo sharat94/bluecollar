@@ -1,0 +1,29 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= devise_error_messages! %>
+
+<div><%= f.label :email %><br />
+	<%= f.email_field :email, autofocus: true %></div>
+
+	<div><%= f.label :password %> <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %><br />
+
+		<%= f.password_field :password, autocomplete: "off" %></div>
+
+		<div><%= f.label :password_confirmation %><br />
+			<%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+			<label>Select User Type</label>
+			<%= f.radio_button :role, "user" %> User
+			<%= f.radio_button :role, "worker" %> Service Provider
+			<br/>
+			<label>Select Services </label>
+			<%= f.collection_check_boxes :service_ids, Service.all , :id, :name do |b| %>
+			<%= b.check_box %>
+			<%= b.label %>
+			<% end %>
+			<br/>
+			<label>
+				<div><%= f.submit "Sign up" %></div>
+				<% end %>
+
+				<%= render "devise/shared/links" %>

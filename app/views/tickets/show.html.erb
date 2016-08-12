@@ -1,0 +1,50 @@
+<h3><%= @ticket.title %></h3>
+<%= link_to "edit" , edit_ticket_path %>
+<%= link_to "destroy" , ticket_path(@ticket.id), data: {method: :delete , confirm: "are you sure?"} %>
+<p><%= @ticket.body %></p>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Feedback Ticket
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Tasks</h4>
+      </div>
+      <div class="modal-body">
+        	<%= form_for @fticket do |f| %>
+			<% if @fticket.errors.any? %>
+			<h4>These errors prohibited the form from being saved: </h4>
+			<ul style="color:locality;">
+			<% @fticket.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %>
+			</ul>
+			<% end %>
+			<%= f.hidden_field :ticket_id , value: @ticket.id %>
+			<label>Ticket Rating</label><br/>
+			<%= f.number_field :ticket_rating , :class => 'text_field', :step => 0.5 %>
+			<label>Bluecollar Rating</label><br/>
+			<%= f.number_field :user_rating , :class => 'text_field', :step => 0.5 %>
+			<%= f.submit %>
+			<% end %>
+     
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+<h5> Is it completed? </h5>
+<%= link_to "mark as completed", tickets_mark_as_complete_path(ticket_id: @ticket.id) %>
+
+
+
+

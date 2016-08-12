@@ -1,0 +1,21 @@
+<h3>Add Localities</h3>
+
+<%= form_for @locality do |f| %>
+<% if @locality.errors.any? %>
+<h4>These errors prohibited the form from being saved: </h4>
+<ul style="color:locality;">
+<% @locality.errors.full_messages.each do |msg| %>
+	<li><%= msg %></li>
+	<% end %>
+	</ul>
+	<% end %>
+
+	<label>City</label><br/>
+	<%= f.collection_select :city_id, City.all , :id , :name , prompt: "Select City" %><br/>
+	
+	<label>Name</label><br/>
+	<%= f.text_field :name %><br/>
+
+	<%= f.submit %>
+
+	<% end %>

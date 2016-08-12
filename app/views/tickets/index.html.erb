@@ -1,0 +1,32 @@
+<div class = "row">
+	<div class = "col-md-7">
+
+<h1> Listing Tickets </h1>
+<% if @tickets.empty? %>
+	<p> No tickets found </p>
+<% else %>
+<table class="table table-striped">
+ <thead>
+ <tr>
+ <th>#</th>
+ <th> Name   </th>
+  <th>Actions </th>
+
+ </tr>
+ </thead>
+ <tbody>
+ <% @tickets.each_with_index do |ticket,index| %>
+ <tr>
+ <td><%= index +1 %></td>
+ <td><%= link_to ticket.title.capitalize , ticket_path(ticket.id) %></td>
+  <td><%= link_to "Show" , ticket_path(ticket.id) %></td>
+ </tr>
+ <%end%>
+ </tbody>
+ </table>
+<% end %>
+
+<%= link_to "ADD ticket", new_ticket_path %>
+
+</div>
+</div>

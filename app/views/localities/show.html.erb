@@ -1,0 +1,14 @@
+<h3><%= @locality.name %></h3>
+<%= link_to "edit" , edit_locality_path %>
+<%= link_to "destroy" , locality_path(@locality.id), data: {method: :delete , confirm: "are you sure?"} %>
+
+<% if @locality.tickets.empty? %>
+No Tickets Found!!!
+<% else %>
+<h3>Total Tickets found : <%= @locality.tickets.size %></h3>
+<ul>
+<% @locality.tickets.each do |ticket| %>
+	<li><%= link_to ticket.title , ticket_path(ticket.id) %></li>
+	<% end %>
+	</ul>
+	<% end %>

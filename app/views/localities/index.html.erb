@@ -1,0 +1,28 @@
+<h1> Listing Localities </h1>
+<% if @localities.empty? %>
+	<p> No Localities found </p>
+<% else %>
+<table border = "1">
+ <thead>
+ <tr>
+ <th>#</th>
+ <th> Name   </th>
+  <th>Actions </th>
+
+ </tr>
+ </thead>
+ <tbody>
+ <% @localities.each_with_index do |locality,index| %>
+ <tr>
+ <td><%= index +1 %></td>
+ <td><%= link_to locality.name.capitalize , locality_path(locality.id) %></td>
+  <td><%= link_to "Show" , locality_path(locality.id) %>
+ </tr>
+ <%end%>
+ </tbody>
+ </table>
+<% end %>
+
+<%= link_to "ADD locality", new_locality_path %>
+
+

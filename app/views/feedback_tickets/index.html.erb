@@ -1,0 +1,36 @@
+<div class = "row">
+	<div class = "col-md-7">
+<div class = "page-header">
+<h1> Listing Complaints/Feedbacks </h1>
+</div>
+<% if @ftickets.empty? %>
+	<p> No Complaints/Feedbacks found </p>
+<% else %>
+<table class="table table-striped">
+ <thead>
+ <tr>
+ <th>#</th>
+ <th> Ticket   </th>
+  <th>BlueCollar Rating</th>
+  <th>Ticket Rating </th>
+
+ </tr>
+ </thead>
+ <tbody>
+ <% @ftickets.each_with_index do |fticket,index| %>
+ <tr>
+ <td><%= index +1 %></td>
+  <td><%= fticket.ticket.title %></td>
+  <td><%= fticket.user_rating %></td>
+  <td><%= fticket.ticket_rating %></td>
+ </tr>
+ <%end%>
+ </tbody>
+ </table>
+<% end %>
+
+</div>
+</div>
+
+
+

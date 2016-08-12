@@ -1,0 +1,29 @@
+
+<h1> Listing Cities </h1>
+<% if @cities.empty? %>
+	<p> No Cities found </p>
+<% else %>
+<table border = "1">
+ <thead>
+ <tr>
+ <th>#</th>
+ <th> Name   </th>
+  <th>Actions </th>
+
+ </tr>
+ </thead>
+ <tbody>
+ <% @cities.each_with_index do |city,index| %>
+ <tr>
+ <td><%= index +1 %></td>
+ <td><%= link_to city.name.capitalize , city_path(city.id) %></td>
+  <td><%= link_to "Show" , city_path(city.id) %>
+ </tr>
+ <%end%>
+ </tbody>
+ </table>
+<% end %>
+
+<%= link_to "ADD City", new_city_path %>
+
+

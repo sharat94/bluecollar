@@ -1,0 +1,32 @@
+<h3>Add Tickets</h3>
+
+<%= form_for @ticket do |f| %>
+<% if @ticket.errors.any? %>
+<h4>These errors prohibited the form from being saved: </h4>
+<ul style="color:locality;">
+<% @ticket.errors.full_messages.each do |msg| %>
+	<li><%= msg %></li>
+	<% end %>
+	</ul>
+	<% end %>
+
+	<label>City</label><br/>
+	<%= f.collection_select :city_id, City.all , :id , :name , prompt: "Select City" %><br/>
+	
+	<label>Locality</label><br/>
+	<%= f.collection_select :locality_id, Locality.all , :id , :name , prompt: "Select Locality" %><br/>
+
+	<label>Select Services </label>
+	<%= f.collection_check_boxes :service_ids, Service.all , :id, :name do |b| %>
+	<%= b.check_box %>
+	<%= b.label %>
+	<br/>
+	<% end %>
+	<br/> <br/>
+	<label>Ticket</label><br/>
+	<%= f.text_field :title %><br/>
+	<label>Description</label><br/>
+	<%= f.text_field :body %><br/> 
+	<%= f.submit %>
+
+	<% end %>
